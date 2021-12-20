@@ -1,57 +1,33 @@
-let plus = document.getElementById('plus');
-let minus = document.getElementById('minus');
-let multiply = document.getElementById('multiply');
-let devide = document.getElementById('devide');
+var operationButtons = document.getElementsByClassName('operation-button');
 
+let input1 = document.getElementById('numberOne');
+let input2 = document.getElementById('numberTwo');
 
+function makeOperation(operationCode) {
 
+    let number1 = +input1.value;
+    let number2 = +input2.value;
 
-function onButtonPlusClick() {
-    let valueOne = document.getElementById('numberOne');
-    let valueTwo = document.getElementById('numberTwo');
-
-    let a = +valueOne.value;
-    let b = +valueTwo.value;
-
-    let summ = a + b;
-    console.log(summ)
+    if (operationCode === '+') {
+        var result = number1 + number2;
+    } else if (operationCode === '-') {
+        var result = number1 - number2;
+    } else if (operationCode === '*') {
+        var result = number1 * number2;
+    } else if (operationCode === '/') {
+        var result = number1 / number2;
+    } else {
+        window.alert('operation is unknown')
+    }
+    window.alert(result);
 }
 
-function onButtonMinusClick() {
-    let valueOne = document.getElementById('numberOne');
-    let valueTwo = document.getElementById('numberTwo');
-
-    let a = +valueOne.value;
-    let b = +valueTwo.value;
-
-    let summ = a - b;
-    console.log(summ)
+function onOperationButtonClick(eventObject) {
+    let clickedElement = eventObject.currentTarget;
+    let operation = clickedElement.innerHTML;
+    makeOperation(operation);
 }
-
-function onButtonMultiplyClick() {
-    let valueOne = document.getElementById('numberOne');
-    let valueTwo = document.getElementById('numberTwo');
-
-    let a = +valueOne.value;
-    let b = +valueTwo.value;
-
-    let summ = a / b;
-    console.log(summ)
+for (let i = 0; i < operationButtons.length; i++) {
+    let button = operationButtons[i];
+    button.addEventListener('click', onOperationButtonClick);
 }
-
-function onButtonDevideClick() {
-    let valueOne = document.getElementById('numberOne');
-    let valueTwo = document.getElementById('numberTwo');
-
-    let a = +valueOne.value;
-    let b = +valueTwo.value;
-
-    let summ = a * b;
-    console.log(summ)
-}
-
-plus.addEventListener('click', onButtonPlusClick);
-minus.addEventListener('click', onButtonMinusClick);
-multiply.addEventListener('click', onButtonMultiplyClick);
-devide.addEventListener('click', onButtonDevideClick);
-
